@@ -8,7 +8,6 @@
   <script>
   /* JAVASCRIPT CODE GOES HERE */
 
-
 Plotly.d3.csv("https://raw.githubusercontent.com/cstanesvoda/4G-reports/master/de.csv", function(err, rows){
 
 
@@ -22,24 +21,9 @@ Plotly.d3.csv("https://raw.githubusercontent.com/cstanesvoda/4G-reports/master/d
     });
   }
 
-var mintrsh = {
-  type: "scatter",
-  mode: "lines",
-  name: 'DEDE',
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'mintrsh'),
-  line: {color: '#17BECF'}
-}
 
-var maxtrsh = {
-  type: "scatter",
-  mode: "lines",
-  name: 'DEDE',
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'maxtrsh'),
-  line: {color: '#17BECF'}
-}
-  
+
+
 var trace1 = {
   type: "scatter",
   mode: "lines",
@@ -121,9 +105,36 @@ var trace9 = {
   line: {color: '#778899'}
 }
 
-var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,maxtrsh,mintrsh];
+var tracemax = {
+  type: "scatter",
+  mode: "lines",
+  name: '80%',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'maxtrsh'),
+  line: {
+    dash: 'dot',
+    width: 4,
+    color: '#00FF00'
+  }
+}
+
+var tracemin = {
+  type: "scatter",
+  mode: "lines",
+  name: '70%',
+    x: unpack(rows, 'Date'),
+  y: unpack(rows, 'mintrsh'),
+  line: {
+    dash: 'dot',
+    width: 4,
+    color: '#FF0000'
+  }
+}
+
+var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,tracemax,tracemin];
     
 var layout = {
+  height: 1000,
   title: 'Germania', 
   xaxis: {
     autorange: true, 
